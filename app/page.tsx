@@ -1,9 +1,30 @@
+/**
+ * Homepage (/) — composes the main landing page from section components.
+ *
+ * Each section has an `id` attribute that the Navbar's anchor links
+ * (`/#about`, `/#projects`, etc.) scroll to:
+ *
+ * | Section id     | Component            |
+ * |----------------|----------------------|
+ * | `home`         | Hero + Capabilities  |
+ * | `about`        | AboutSection         |
+ * | `leaders`      | LeadershipTeam       |
+ * | `innovations`  | ProjectsSection      |
+ * | `latest-news`  | NewsSection          |
+ * | `contact`      | ContactSection       |
+ *
+ * This page is a **Server Component** (no `'use client'` directive).
+ * Individual sections that need interactivity declare `'use client'` themselves.
+ *
+ * @module app/page
+ */
 import { Navbar } from '@/components/layout/Navbar'
 import { Hero } from '@/components/sections/Hero'
 import { CapabilitiesSection } from '@/components/sections/CapabilitiesSection'
 import { AboutSection } from '@/components/sections/AboutSection'
-import { ProjectsSection } from '@/components/sections/ProjectsSection'
-import { NewsSection } from '@/components/sections/NewsSection'
+import { LeadersSection } from '@/components/sections/LeadersSection'
+import { InnovationsSection } from '@/components/sections/InnovationsSection'
+import { LatestNewsSection } from '@/components/sections/LatestNewsSection'
 import { ContactSection } from '@/components/sections/ContactSection'
 import { Footer } from '@/components/layout/Footer'
 
@@ -11,14 +32,16 @@ export default function Home() {
   return (
     <main className="w-full">
       <Navbar />
+      {/* pt-[5.5rem] offsets the fixed navbar height (5.5rem = 88px) */}
       <div className="pt-[5.5rem]">
         <div id="home">
           <Hero />
           <CapabilitiesSection />
         </div>
         <AboutSection />
-        <ProjectsSection />
-        <NewsSection />
+        <LeadersSection />
+        <InnovationsSection />
+        <LatestNewsSection />
         <ContactSection />
       </div>
       <Footer />

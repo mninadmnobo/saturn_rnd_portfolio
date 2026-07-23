@@ -1,10 +1,28 @@
+/**
+ * CapabilitiesSection — four-column feature highlight strip, displayed
+ * directly below the Hero on the homepage.
+ *
+ * Renders a horizontal row of icon + heading + description cards, each
+ * animated in from below using `fadeUpProps` from `lib/animations`.
+ * A decorative gradient line connects the icon circles on large screens.
+ *
+ * ## How to add or edit a capability
+ * Edit the `FEATURES` constant below. Each entry needs:
+ * - `title`       — short ALL-CAPS heading
+ * - `description` — one to two sentences of supporting copy
+ * - `icon`        — any Lucide component
+ *
+ * @module components/sections/CapabilitiesSection
+ */
 'use client'
 
 import { motion } from 'framer-motion'
 import { Cpu, Grid, Layers, Leaf } from 'lucide-react'
 import { fadeUpProps } from '@/lib/animations'
+import type { LucideIcon } from 'lucide-react'
 
-const features = [
+/** Feature card data — defined outside the component so it's not re-created on every render. */
+const FEATURES: { title: string; description: string; icon: LucideIcon }[] = [
   {
     title: 'INTELLIGENT AUTOMATION',
     description: 'Automating textile processes to enhance precision, quality, and productivity.',
@@ -38,25 +56,25 @@ export const CapabilitiesSection = () => {
             Innovate. <span className="text-orange-500">Automate.</span> <span className="text-blue-500">Elevate.</span>
           </h2>
           <p className="text-lg text-slate-600 dark:text-slate-400 max-w-2xl mx-auto">
-            Advanced R&D and smart automation driving the future of the textile industry.
+            Discover how we use research and develop technologies to build better solutions
           </p>
         </div>
 
-        {/* Features Row */}
+        {/* Feature Cards */}
         <div className="relative">
-          {/* Horizontal Connection Line */}
+          {/* Decorative horizontal connector line (desktop only) */}
           <div className="absolute top-12 left-0 right-0 h-[1px] bg-gradient-to-r from-transparent via-orange-500/20 to-transparent hidden lg:block" />
 
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-x-8 gap-y-16">
-            {features.map((feature, idx) => (
+            {FEATURES.map((feature, idx) => (
               <motion.div
                 key={idx}
                 {...fadeUpProps(idx * 0.1)}
                 className="relative flex flex-col items-center lg:items-start text-center lg:text-left group"
               >
-                {/* Icon Container with glowing dot */}
+                {/* Icon Container */}
                 <div className="relative mb-6">
-                  {/* Glowing Dot on the line (desktop only) */}
+                  {/* Glowing dot on the connector line (desktop only) */}
                   <div className="absolute top-1/2 -left-12 -translate-y-1/2 w-1.5 h-1.5 rounded-full bg-orange-500 shadow-[0_0_8px_2px_rgba(249,115,22,0.4)] dark:shadow-[0_0_8px_2px_rgba(249,115,22,0.6)] hidden lg:block" />
 
                   {/* Icon Circle */}
@@ -65,7 +83,7 @@ export const CapabilitiesSection = () => {
                   </div>
                 </div>
 
-                {/* Text Content */}
+                {/* Text */}
                 <h3 className="text-sm font-bold text-slate-900 dark:text-white mb-3 tracking-wider">{feature.title}</h3>
                 <p className="text-sm text-slate-600 dark:text-slate-400 leading-relaxed pr-0 lg:pr-4">
                   {feature.description}

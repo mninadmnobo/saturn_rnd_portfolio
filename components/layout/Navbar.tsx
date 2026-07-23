@@ -1,42 +1,67 @@
+/**
+ * Navbar — site-wide top navigation bar.
+ *
+ * ## Behavior
+ * - **Fixed positioning**: always visible at the top of the viewport.
+ * - **Scroll-aware backdrop**: switches from a subtle blur to a heavier
+ *   blur + shadow once the user scrolls past 50 px.
+ * - **Active section tracking**: listens to scroll position and highlights
+ *   the nav link whose corresponding section is in view. Sections are matched
+ *   by element `id` (e.g. `id="about"`, `id="projects"`).
+ * - **Mobile drawer**: a hamburger menu that collapses into a vertical link
+ *   list on small screens and closes automatically on link click.
+ *
+ * ## How to add a nav link
+ * Append an entry to the `NAV_LINKS` constant below. `sectionId` must match
+ * the `id` attribute of the target section element on the page.
+ *
+ * ```ts
+ * { href: '/#team', sectionId: 'team', label: 'Team' }
+ * ```
+ *
+ * @module components/layout/Navbar
+ */
 'use client'
 
 import { useState, useEffect } from 'react'
 import Link from 'next/link'
 import { Menu, X } from 'lucide-react'
 
+/** Static link definitions. Defined outside the component to avoid re-creating the array on every render. */
+const NAV_LINKS = [
+  { href: '/', sectionId: 'home', label: 'HOME' },
+  { href: '/#about', sectionId: 'about', label: 'ABOUT' },
+  { href: '/#leaders', sectionId: 'leaders', label: 'LEADERS' },
+  { href: '/#innovations', sectionId: 'innovations', label: 'INNOVATIONS' },
+  { href: '/#latest-news', sectionId: 'latest-news', label: 'LATEST NEWS' },
+] as const
+
 export const Navbar = () => {
   const [isOpen, setIsOpen] = useState(false)
   const [scrolled, setScrolled] = useState(false)
   const [activeSection, setActiveSection] = useState('home')
 
-  const navLinks = [
-    { href: '/', sectionId: 'home', label: 'Home' },
-    { href: '/#about', sectionId: 'about', label: 'About' },
-    { href: '/#leadership', sectionId: 'leadership', label: 'Team' },
-    { href: '/#projects', sectionId: 'projects', label: 'Projects' },
-    { href: '/#news', sectionId: 'news', label: 'News' },
-  ]
-
   useEffect(() => {
     const handleScroll = () => {
       setScrolled(window.scrollY > 50)
 
-      // Determine active section
+      // Walk through each nav section and find the last one whose top edge
+      // has passed the 200 px threshold — that's the "current" section.
       let current = ''
-      for (const link of navLinks) {
-        if (link.sectionId) {
-          const element = document.getElementById(link.sectionId)
-          if (element && element.getBoundingClientRect().top <= 200) {
-            current = link.sectionId
-          }
+      for (const link of NAV_LINKS) {
+        const element = document.getElementById(link.sectionId)
+        if (element && element.getBoundingClientRect().top <= 200) {
+          current = link.sectionId
         }
       }
-      // Also check contact section
+
+      // Also check the contact section (it isn't in NAV_LINKS but has a button)
       const contactElement = document.getElementById('contact')
       if (contactElement && contactElement.getBoundingClientRect().top <= 200) {
         current = 'contact'
       }
 
+      // Snap back to "home" when near the very top of the page
       if (window.scrollY < 100) {
         current = 'home'
       }
@@ -47,7 +72,7 @@ export const Navbar = () => {
     }
 
     window.addEventListener('scroll', handleScroll)
-    handleScroll() // Run once on mount
+    handleScroll() // Sync on mount without waiting for a scroll event
     return () => window.removeEventListener('scroll', handleScroll)
   }, [])
 
@@ -69,7 +94,7 @@ export const Navbar = () => {
 
           {/* Desktop Navigation */}
           <div className="hidden md:flex items-center space-x-1 absolute left-1/2 -translate-x-1/2">
-            {navLinks.map((link) => (
+            {NAV_LINKS.map((link) => (
               <Link
                 key={link.label}
                 href={link.href}
@@ -95,21 +120,22 @@ export const Navbar = () => {
               Let's Connect
             </Link>
 
-            {/* Mobile Menu Button */}
+            {/* Mobile Menu Toggle */}
             <button
               onClick={() => setIsOpen(!isOpen)}
               className="rounded-lg p-2 text-slate-100 transition-colors hover:bg-slate-800 md:hidden"
               aria-label="Toggle menu"
+              aria-expanded={isOpen}
             >
               {isOpen ? <X size={24} /> : <Menu size={24} />}
             </button>
           </div>
         </div>
 
-        {/* Mobile Navigation */}
+        {/* Mobile Navigation Drawer */}
         {isOpen && (
           <div className="md:hidden pb-4 space-y-2 animate-in fade-in slide-in-from-top-2">
-            {navLinks.map((link) => (
+            {NAV_LINKS.map((link) => (
               <Link
                 key={link.label}
                 href={link.href}

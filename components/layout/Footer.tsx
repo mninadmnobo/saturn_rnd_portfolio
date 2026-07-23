@@ -1,3 +1,16 @@
+/**
+ * Footer — site-wide bottom footer.
+ *
+ * Displays the Saturn Textiles logo, a short tagline, and contact
+ * information (address, phone, email) with accessible links.
+ *
+ * ## How to update contact details
+ * Edit the contact info directly in this file. When the Spring Boot backend
+ * is integrated, consider pulling this data from a `/api/config` endpoint
+ * so it can be updated without redeploying the frontend.
+ *
+ * @module components/layout/Footer
+ */
 import Link from 'next/link'
 import { Mail, MapPin, Phone } from 'lucide-react'
 
@@ -29,11 +42,24 @@ export const Footer = () => {
                   13/2, Abdus Sattar Master Road,<br />Tongi, Gazipur
                 </a>
               </li>
-              <li className="flex items-center gap-3">
-                <Phone className="w-5 h-5 shrink-0 text-orange-400" />
-                <a href="tel:+8801679248064" className="hover:text-orange-400 transition-colors">
-                  +880 1679-248064
-                </a>
+              <li className="flex items-start gap-3">
+                <Phone className="w-5 h-5 shrink-0 text-orange-400 mt-0.5" />
+                <div className="flex flex-col gap-1">
+                  <a
+                    href="tel:+8801679248064"
+                    title="+880 1679-248064"
+                    className="hover:text-orange-400 transition-colors"
+                  >
+                    +880 1679-248064
+                  </a>
+                  <a
+                    href="tel:+8801039444451"
+                    title="+880 1039-444451"
+                    className="hover:text-orange-400 transition-colors"
+                  >
+                    +880 1039-444451
+                  </a>
+                </div>
               </li>
               <li className="flex items-center gap-3">
                 <Mail className="w-5 h-5 shrink-0 text-orange-400" />

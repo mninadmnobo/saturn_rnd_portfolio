@@ -81,23 +81,3 @@ export function fadeLeftProps(delay = 0, duration = 0.5) {
     transition: { duration, delay, ease: EASE_OUT },
   }
 }
-
-/** Ready-to-spread motion props: scale + fade. Used for gallery/grid thumbnails. */
-export function scaleInProps(delay = 0, duration = 0.5) {
-  return {
-    initial: { opacity: 0, scale: 0.9 },
-    whileInView: { opacity: 1, scale: 1 },
-    viewport: defaultViewport,
-    transition: { duration, delay, ease: EASE_OUT },
-  }
-}
-
-/** Ready-to-spread motion props: simple fade, no movement. Used for subtle inline reveals. */
-export function fadeInProps(delay = 0, duration = 0.5) {
-  return {
-    initial: { opacity: 0 },
-    whileInView: { opacity: 1 },
-    viewport: defaultViewport,
-    transition: { duration, delay, ease: EASE_OUT },
-  }
-}

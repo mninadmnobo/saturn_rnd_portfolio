@@ -1,157 +1,116 @@
+/**
+ * globals.css — global styles for saturn-rnd-portfolio.
+ *
+ * Structure:
+ * 1. Tailwind CSS imports
+ * 2. Dark mode variant definition
+ * 3. @theme — maps CSS custom properties to Tailwind utility class names
+ * 4. :root — light-mode design tokens (currently not used; app is locked to dark)
+ * 5. .dark — dark-mode design tokens (active; set by className="dark" in app/layout.tsx)
+ * 6. @layer base — global element defaults
+ *
+ * Token groups in use:
+ * - background / foreground — body + page background
+ * - card / card-foreground — card surfaces
+ * - secondary / secondary-foreground — the electric-blue accent (nav active, progress bars)
+ * - muted / muted-foreground — subdued text, placeholders
+ * - accent / accent-foreground — link/interactive hover
+ * - destructive — error states
+ * - border / input / ring — form and outline styling
+ * - chart-3 / chart-4 — reused by badge.tsx for success (green) and warning (amber) tones
+ * - radius — border-radius scale used by utility classes (radius-sm through radius-4xl)
+ */
+
 @import 'tailwindcss';
 @import 'tw-animate-css';
-@import 'shadcn/tailwind.css';
 
+/* Dark mode activates when an ancestor has class="dark" (set globally on <html>). */
 @custom-variant dark (&:is(.dark *));
 
 @theme inline {
-  --color-sidebar-ring: var(--sidebar-ring);
-  --color-sidebar-border: var(--sidebar-border);
-  --color-sidebar-accent-foreground: var(--sidebar-accent-foreground);
-  --color-sidebar-accent: var(--sidebar-accent);
-  --color-sidebar-primary-foreground: var(--sidebar-primary-foreground);
-  --color-sidebar-primary: var(--sidebar-primary);
-  --color-sidebar-foreground: var(--sidebar-foreground);
-  --color-sidebar: var(--sidebar);
-  --color-chart-5: var(--chart-5);
-  --color-chart-4: var(--chart-4);
-  --color-chart-3: var(--chart-3);
-  --color-chart-2: var(--chart-2);
-  --color-chart-1: var(--chart-1);
-  --color-ring: var(--ring);
-  --color-input: var(--input);
-  --color-border: var(--border);
-  --color-destructive: var(--destructive);
-  --color-accent-foreground: var(--accent-foreground);
-  --color-accent: var(--accent);
-  --color-muted-foreground: var(--muted-foreground);
-  --color-muted: var(--muted);
-  --color-secondary-foreground: var(--secondary-foreground);
-  --color-secondary: var(--secondary);
+  /* Color utilities */
+  --color-background:         var(--background);
+  --color-foreground:         var(--foreground);
+  --color-card:               var(--card);
+  --color-card-foreground:    var(--card-foreground);
+  --color-primary:            var(--primary);
   --color-primary-foreground: var(--primary-foreground);
-  --color-primary: var(--primary);
-  --color-popover-foreground: var(--popover-foreground);
-  --color-popover: var(--popover);
-  --color-card-foreground: var(--card-foreground);
-  --color-card: var(--card);
-  --color-foreground: var(--foreground);
-  --color-background: var(--background);
-  --radius-sm: calc(var(--radius) * 0.6);
-  --radius-md: calc(var(--radius) * 0.8);
-  --radius-lg: var(--radius);
-  --radius-xl: calc(var(--radius) * 1.4);
+  --color-secondary:          var(--secondary);
+  --color-secondary-foreground: var(--secondary-foreground);
+  --color-muted:              var(--muted);
+  --color-muted-foreground:   var(--muted-foreground);
+  --color-accent:             var(--accent);
+  --color-accent-foreground:  var(--accent-foreground);
+  --color-destructive:        var(--destructive);
+  --color-border:             var(--border);
+  --color-input:              var(--input);
+  --color-ring:               var(--ring);
+  /* chart-3 = green (badge success), chart-4 = amber (badge warning) */
+  --color-chart-3:            var(--chart-3);
+  --color-chart-4:            var(--chart-4);
+
+  /* Border-radius scale */
+  --radius-sm:  calc(var(--radius) * 0.6);
+  --radius-md:  calc(var(--radius) * 0.8);
+  --radius-lg:  var(--radius);
+  --radius-xl:  calc(var(--radius) * 1.4);
   --radius-2xl: calc(var(--radius) * 1.8);
   --radius-3xl: calc(var(--radius) * 2.2);
   --radius-4xl: calc(var(--radius) * 2.6);
 }
 
+/* ── Light theme tokens ─────────────────────────────────────────────────────
+   These are defined for completeness but the app currently forces dark mode
+   via className="dark" on <html> in app/layout.tsx. To enable light mode,
+   remove that class (and wire up next-themes — see ThemeProvider.tsx).
+   ─────────────────────────────────────────────────────────────────────────── */
 :root {
   color-scheme: light;
-  /* Saturn Textiles - Premium Deep Navy & Electric Blue */
-  --background: #ffffff;
-  --foreground: #0b1f3a;
-  --card: #f8fafc;
-  --card-foreground: #0b1f3a;
-  --popover: #ffffff;
-  --popover-foreground: #0b1f3a;
-  --primary: #0b1f3a;
+  --background:         #ffffff;
+  --foreground:         #0b1f3a;
+  --card:               #f8fafc;
+  --card-foreground:    #0b1f3a;
+  --primary:            #0b1f3a;
   --primary-foreground: #ffffff;
-  --secondary: #2563eb;
+  --secondary:          #2563eb;
   --secondary-foreground: #ffffff;
-  --muted: #e2e8f0;
-  --muted-foreground: #64748b;
-  --accent: #2563eb;
-  --accent-foreground: #ffffff;
-  --destructive: #dc2626;
-  --border: #e2e8f0;
-  --input: #f1f5f9;
-  --ring: #2563eb;
-  --chart-1: #2563eb;
-  --chart-2: #0b1f3a;
-  --chart-3: #10b981;
-  --chart-4: #f59e0b;
-  --chart-5: #ef4444;
-  --radius: 0.625rem;
-  --sidebar: #ffffff;
-  --sidebar-foreground: #0b1f3a;
-  --sidebar-primary: #0b1f3a;
-  --sidebar-primary-foreground: #ffffff;
-  --sidebar-accent: #2563eb;
-  --sidebar-accent-foreground: #ffffff;
-  --sidebar-border: #e2e8f0;
-  --sidebar-ring: #2563eb;
+  --muted:              #e2e8f0;
+  --muted-foreground:   #64748b;
+  --accent:             #2563eb;
+  --accent-foreground:  #ffffff;
+  --destructive:        #dc2626;
+  --border:             #e2e8f0;
+  --input:              #f1f5f9;
+  --ring:               #2563eb;
+  --chart-3:            #10b981;   /* badge success (green)  */
+  --chart-4:            #f59e0b;   /* badge warning (amber)  */
+  --radius:             0.625rem;
 }
 
+/* ── Dark theme tokens (ACTIVE) ─────────────────────────────────────────────
+   Applied globally because <html> has className="dark" in app/layout.tsx.
+   ─────────────────────────────────────────────────────────────────────────── */
 .dark {
   color-scheme: dark;
-  --background: #020914;
-  --foreground: #e8edf2;
-  --card: #2a3038;
-  --card-foreground: #e8edf2;
-  --popover: #2a3038;
-  --popover-foreground: #e8edf2;
-  --primary: #edf1f5;
+  --background:         #020914;
+  --foreground:         #e8edf2;
+  --card:               #2a3038;
+  --card-foreground:    #e8edf2;
+  --primary:            #edf1f5;
   --primary-foreground: #20252b;
-  --secondary: #2563eb;
+  --secondary:          #2563eb;
   --secondary-foreground: #ffffff;
-  --muted: #3a424c;
-  --muted-foreground: #cbd5e1;
-  --accent: #60a5fa;
-  --accent-foreground: #20252b;
-  --destructive: #f87171;
-  --border: #334155;
-  --input: #1e3a5f;
-  --ring: #60a5fa;
-  --chart-1: #60a5fa;
-  --chart-2: #e0f2fe;
-  --chart-3: #10b981;
-  --chart-4: #fbbf24;
-  --chart-5: #f87171;
-  --sidebar: #2a3038;
-  --sidebar-foreground: #e8edf2;
-  --sidebar-primary: #60a5fa;
-  --sidebar-primary-foreground: #20252b;
-  --sidebar-accent: #2563eb;
-  --sidebar-accent-foreground: #ffffff;
-  --sidebar-border: #3a424c;
-  --sidebar-ring: #60a5fa;
-}
-
-@media (prefers-color-scheme: dark) {
-  :root:not(.light) {
-    color-scheme: dark;
-    --background: #020914;
-    --foreground: #e8edf2;
-    --card: #2a3038;
-    --card-foreground: #e8edf2;
-    --popover: #2a3038;
-    --popover-foreground: #e8edf2;
-    --primary: #edf1f5;
-    --primary-foreground: #20252b;
-    --secondary: #2563eb;
-    --secondary-foreground: #ffffff;
-    --muted: #3a424c;
-    --muted-foreground: #cbd5e1;
-    --accent: #60a5fa;
-    --accent-foreground: #20252b;
-    --destructive: #f87171;
-    --border: #334155;
-    --input: #1e3a5f;
-    --ring: #60a5fa;
-    --chart-1: #60a5fa;
-    --chart-2: #e0f2fe;
-    --chart-3: #10b981;
-    --chart-4: #fbbf24;
-    --chart-5: #f87171;
-    --sidebar: #2a3038;
-    --sidebar-foreground: #e8edf2;
-    --sidebar-primary: #60a5fa;
-    --sidebar-primary-foreground: #20252b;
-    --sidebar-accent: #2563eb;
-    --sidebar-accent-foreground: #ffffff;
-    --sidebar-border: #3a424c;
-    --sidebar-ring: #60a5fa;
-  }
+  --muted:              #3a424c;
+  --muted-foreground:   #cbd5e1;
+  --accent:             #60a5fa;
+  --accent-foreground:  #20252b;
+  --destructive:        #f87171;
+  --border:             #334155;
+  --input:              #1e3a5f;
+  --ring:               #60a5fa;
+  --chart-3:            #10b981;   /* badge success (green)  */
+  --chart-4:            #fbbf24;   /* badge warning (amber)  */
+  --radius:             0.625rem;
 }
 
 @layer base {
@@ -161,4 +120,20 @@
   body {
     @apply bg-background text-foreground;
   }
+}
+
+/* Pulsing border animation on hover */
+@keyframes borderPulse {
+  0%, 100% {
+    border-color: rgba(249, 115, 22, 1);
+    box-shadow: 0 0 30px rgba(249, 115, 22, 0.45), 0 0 60px rgba(249, 115, 22, 0.2);
+  }
+  50% {
+    border-color: rgba(249, 115, 22, 0.25);
+    box-shadow: 0 0 8px rgba(249, 115, 22, 0.1);
+  }
+}
+
+.hover-border-blink:hover {
+  animation: borderPulse 1.2s infinite ease-in-out;
 }

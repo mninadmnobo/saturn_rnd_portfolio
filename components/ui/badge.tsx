@@ -1,3 +1,12 @@
+/**
+ * Badge — a compact, rounded pill for displaying status, category, or tag information.
+ *
+ * Uses CSS custom properties defined in `globals.css` via `@theme inline` so
+ * badge colors automatically follow the active light/dark theme without needing
+ * any `dark:` overrides in this file.
+ *
+ * @module components/ui/badge
+ */
 import type { LucideIcon } from 'lucide-react'
 import type { ReactNode } from 'react'
 import { cn } from '@/lib/utils'
@@ -15,6 +24,7 @@ import { cn } from '@/lib/utils'
  */
 export type BadgeTone = 'neutral' | 'info' | 'success' | 'warning' | 'danger'
 
+/** Maps each tone to its Tailwind color-token classes. Must stay in sync with `globals.css` token definitions. */
 const toneClasses: Record<BadgeTone, string> = {
   neutral: 'bg-muted text-muted-foreground',
   info: 'bg-secondary/10 text-secondary',

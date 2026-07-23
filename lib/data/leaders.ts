@@ -33,35 +33,27 @@
 
 /** A single person's public profile. */
 export interface TeamMember {
-  /** Unique, kebab-case identifier — used as the React list key. */
   id: string
-  /** Full display name, including any title prefix (e.g. "Dr."). */
   name: string
-  /** Job title / role, shown directly under the name. */
   title: string
-  /** Short bio — background, focus area, credentials. Aim for 1-3 sentences. */
   bio: string
-  /** Bullet list of key ownership areas, rendered as pill tags. */
   responsibilities: string[]
-  /** Optional avatar image path. Falls back to initials when omitted. */
+  extendedBio?: string[]
+  email?: string
   image?: string
-  /** Optional external profile links. Only the links you provide are rendered. */
   social?: {
     github?: string
     linkedin?: string
     portfolio?: string
+    scholar?: string
+    orcid?: string
   }
 }
 
-/** A group of team members shown together under a shared heading. */
 export interface Department {
-  /** Unique, kebab-case identifier. */
   id: string
-  /** Heading shown above this department's members. */
   name: string
-  /** One or two sentences describing the department's mission. */
   description: string
-  /** Members of this department. See `TeamMember` for the shape. */
   members: TeamMember[]
 }
 
@@ -73,9 +65,9 @@ export const teamDepartments: Department[] = [
       'World-class innovators driving textile technology into the future through AI, materials science, and engineering excellence.',
     members: [
       {
-        id: 'amanullah-chagla',
-        name: 'Amanullah Chagla',
-        title: 'Managing Director (MD)',
+        id: 'chagla',
+        name: 'Chagla Amanullah',
+        title: 'Managing Director',
         bio: 'Providing strategic direction for Saturn Textiles and guiding the company\'s innovation-led future.',
         responsibilities: [
           'Strategic direction and innovation roadmap',
@@ -84,7 +76,6 @@ export const teamDepartments: Department[] = [
           'Grant acquisition and funding strategy',
           'Vision for future textile technologies',
         ],
-        // A portrait has not yet been supplied; use the Saturn mark meanwhile.
         image: '/saturn-logo.png',
       },
       {
@@ -103,16 +94,28 @@ export const teamDepartments: Department[] = [
       },
       {
         id: 'ninad',
-        name: 'Mohammad Ninad Mahmud',
+        name: 'Mohammad Ninad Mahmud Nobo',
         title: 'Lead AI Software Engineer',
-        bio: 'Leads AI software development and delivers robust, production-ready intelligent applications.',
-        responsibilities: [
-          'Production ML pipeline development',
-          'API and integration layer design',
-          'Software quality and testing standards',
-          'Deployment and DevOps automation',
-          'Technology stack leadership',
+        bio: 'Leads AI software engineering and full-stack development for Saturn R&D platforms.',
+        extendedBio: [
+          'Ninad leads the development of FABINS, an AI-powered Fabric Inspection System, along with the department\'s web ecosystem.',
+          'He graduated in Computer Science and Engineering from Bangladesh University of Engineering and Technology (BUET), one of Bangladesh\'s top engineering schools. There, he explored how AI could tackle real, messy problems, from automated software testing to medical image analysis to Bangla speech processing. That mix of research and hands-on building led him to industrial AI, where the challenges are just as complex, but the impact is immediate and visible on the factory floor.',
+          'His research includes AutoTestGenX, a multi-agent system that writes and runs software tests on its own, and MedCAR, which makes sense of conflicting AI readings of chest X-rays. He has also built practical AI apps beyond FABINS. MindTrace gives caregivers simple tools to support people with dementia. GemmaVetCare gives farmers quick AI advice on animal health, even with weak internet access.'
         ],
+        email: 'mninadmnobo@gmail.com',
+        responsibilities: [
+          'Full-stack development of R&D Department Portfolio & FABINS web applications',
+          'Image processing, computer vision model training for FABINS',
+          'ML pipeline architecture & production deployment',
+          'API design, software quality standards, & DevOps automation'
+        ],
+        social: {
+          portfolio: 'https://mninadmnobo.github.io',
+          github: 'https://github.com/mninadmnobo',
+          linkedin: 'https://www.linkedin.com/in/mninadmnobo',
+          scholar: 'https://scholar.google.com/citations?user=y5-A2oAAAAAJ&hl=en&oi=ao',
+          orcid: 'https://orcid.org/0009-0006-2781-6693'
+        },
         image: '/ninad-photo.png',
       },
     ],

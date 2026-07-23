@@ -1,13 +1,37 @@
+/**
+ * Join page (/join) — application form for prospective team members.
+ *
+ * Collects: full name, email, phone, address, LinkedIn, GitHub, personal
+ * website, motivation statement, and CV/resume file upload.
+ *
+ * ## Phase 2 — Spring Boot integration
+ * Replace the `onSubmit` handler (currently `e.preventDefault()`) with a
+ * `multipart/form-data` POST to the backend:
+ *
+ * ```ts
+ * async function handleSubmit(e: React.FormEvent<HTMLFormElement>) {
+ *   e.preventDefault()
+ *   const formData = new FormData(e.currentTarget) // includes the file
+ *   await fetch(`${process.env.NEXT_PUBLIC_API_URL}/api/applications`, {
+ *     method: 'POST',
+ *     body: formData, // do NOT set Content-Type header — browser sets it with boundary
+ *   })
+ * }
+ * ```
+ *
+ * @module app/join/page
+ */
 'use client'
 
 import { motion } from 'framer-motion'
 import { ArrowLeft, UploadCloud } from 'lucide-react'
 import Link from 'next/link'
+import { PageShell } from '@/components/layout/PageShell'
 
 export default function JoinPage() {
   return (
-    <div className="min-h-screen bg-slate-50 dark:bg-[#030812] text-slate-900 dark:text-slate-100 py-20 px-4 sm:px-6 lg:px-8">
-      <div className="max-w-3xl mx-auto">
+    <PageShell>
+      <div className="max-w-3xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
         <Link href="/" className="inline-flex items-center text-sm font-medium text-orange-500 hover:text-orange-600 dark:hover:text-orange-400 mb-8 transition-colors">
           <ArrowLeft className="w-4 h-4 mr-2" />
           Back to Home
@@ -26,23 +50,31 @@ export default function JoinPage() {
             </p>
           </div>
 
+          {/*
+           * TODO (Phase 2 — Spring Boot): Add an onSubmit handler that POSTs
+           * this form as multipart/form-data to `/api/applications`.
+           * See the module JSDoc above for the implementation guide.
+           */}
           <form className="space-y-6" onSubmit={(e) => e.preventDefault()}>
+            {/* Name & Email */}
             <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
               <div className="space-y-2">
-                <label htmlFor="name" className="text-sm font-medium text-slate-700 dark:text-slate-300">Full Name <span className="text-orange-500">*</span></label>
+                <label htmlFor="join-name" className="text-sm font-medium text-slate-700 dark:text-slate-300">Full Name <span className="text-orange-500">*</span></label>
                 <input
                   type="text"
-                  id="name"
+                  id="join-name"
+                  name="name"
                   required
                   className="w-full px-4 py-3 rounded-xl bg-slate-50 dark:bg-[#030812] border border-slate-200 dark:border-slate-800/80 focus:outline-none focus:ring-2 focus:ring-orange-500/50 dark:text-white transition-all"
                   placeholder="John Doe"
                 />
               </div>
               <div className="space-y-2">
-                <label htmlFor="email" className="text-sm font-medium text-slate-700 dark:text-slate-300">Email Address <span className="text-orange-500">*</span></label>
+                <label htmlFor="join-email" className="text-sm font-medium text-slate-700 dark:text-slate-300">Email Address <span className="text-orange-500">*</span></label>
                 <input
                   type="email"
-                  id="email"
+                  id="join-email"
+                  name="email"
                   required
                   className="w-full px-4 py-3 rounded-xl bg-slate-50 dark:bg-[#030812] border border-slate-200 dark:border-slate-800/80 focus:outline-none focus:ring-2 focus:ring-orange-500/50 dark:text-white transition-all"
                   placeholder="john@example.com"
@@ -50,74 +82,84 @@ export default function JoinPage() {
               </div>
             </div>
 
-            <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+            {/* Phone & Address */}
+            <div className="grid grid-cols-1 sm:grid-cols-2 gap-6">
               <div className="space-y-2">
-                <label htmlFor="phone" className="text-sm font-medium text-slate-700 dark:text-slate-300">Phone Number <span className="text-orange-500">*</span></label>
-                <div className="flex gap-2">
-                  <input 
-                    type="text" 
-                    id="countryCode" 
-                    defaultValue="+880"
-                    className="w-24 px-3 py-3 rounded-xl bg-slate-50 dark:bg-[#030812] border border-slate-200 dark:border-slate-800/80 focus:outline-none focus:ring-2 focus:ring-orange-500/50 dark:text-white transition-all text-center"
-                    placeholder="+880"
-                  />
-                  <input 
-                    type="tel" 
-                    id="phone" 
+                <label htmlFor="join-phone" className="text-sm font-semibold text-slate-700 dark:text-slate-300">
+                  Phone Number <span className="text-orange-500">*</span>
+                </label>
+                <div className="flex rounded-xl bg-slate-50 dark:bg-[#030812] border border-slate-200 dark:border-slate-800/80 focus-within:ring-2 focus-within:ring-orange-500/50 transition-all overflow-hidden">
+                  <span className="px-3.5 py-3 text-sm font-semibold text-slate-600 dark:text-slate-300 bg-slate-100 dark:bg-slate-800/60 border-r border-slate-200 dark:border-slate-800/80 shrink-0 flex items-center justify-center">
+                    +880
+                  </span>
+                  <input
+                    type="tel"
+                    id="join-phone"
+                    name="phone"
                     required
-                    className="flex-1 px-4 py-3 rounded-xl bg-slate-50 dark:bg-[#030812] border border-slate-200 dark:border-slate-800/80 focus:outline-none focus:ring-2 focus:ring-orange-500/50 dark:text-white transition-all"
+                    className="w-full px-4 py-3 bg-transparent text-slate-900 dark:text-white focus:outline-none text-sm"
                     placeholder="17XX-XXXXXX"
                   />
                 </div>
               </div>
 
               <div className="space-y-2">
-                <label htmlFor="address" className="text-sm font-medium text-slate-700 dark:text-slate-300">Present Address <span className="text-orange-500">*</span></label>
+                <label htmlFor="join-address" className="text-sm font-semibold text-slate-700 dark:text-slate-300">
+                  Present Address <span className="text-orange-500">*</span>
+                </label>
                 <input
                   type="text"
-                  id="address"
+                  id="join-address"
+                  name="address"
                   required
-                  className="w-full px-4 py-3 rounded-xl bg-slate-50 dark:bg-[#030812] border border-slate-200 dark:border-slate-800/80 focus:outline-none focus:ring-2 focus:ring-orange-500/50 dark:text-white transition-all"
+                  className="w-full px-4 py-3 rounded-xl bg-slate-50 dark:bg-[#030812] border border-slate-200 dark:border-slate-800/80 focus:outline-none focus:ring-2 focus:ring-orange-500/50 dark:text-white transition-all text-sm"
                   placeholder="123 Innovation Drive, City, Country"
                 />
               </div>
             </div>
 
+            {/* LinkedIn & GitHub */}
             <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
               <div className="space-y-2">
-                <label htmlFor="linkedin" className="text-sm font-medium text-slate-700 dark:text-slate-300">LinkedIn Profile <span className="text-slate-400 font-normal">(Optional)</span></label>
+                <label htmlFor="join-linkedin" className="text-sm font-medium text-slate-700 dark:text-slate-300">LinkedIn Profile <span className="text-slate-400 font-normal">(Optional)</span></label>
                 <input
                   type="url"
-                  id="linkedin"
+                  id="join-linkedin"
+                  name="linkedin"
                   className="w-full px-4 py-3 rounded-xl bg-slate-50 dark:bg-[#030812] border border-slate-200 dark:border-slate-800/80 focus:outline-none focus:ring-2 focus:ring-orange-500/50 dark:text-white transition-all"
                   placeholder="https://linkedin.com/in/username"
                 />
               </div>
               <div className="space-y-2">
-                <label htmlFor="github" className="text-sm font-medium text-slate-700 dark:text-slate-300">GitHub Profile <span className="text-slate-400 font-normal">(Optional)</span></label>
+                <label htmlFor="join-github" className="text-sm font-medium text-slate-700 dark:text-slate-300">GitHub Profile <span className="text-slate-400 font-normal">(Optional)</span></label>
                 <input
                   type="url"
-                  id="github"
+                  id="join-github"
+                  name="github"
                   className="w-full px-4 py-3 rounded-xl bg-slate-50 dark:bg-[#030812] border border-slate-200 dark:border-slate-800/80 focus:outline-none focus:ring-2 focus:ring-orange-500/50 dark:text-white transition-all"
                   placeholder="https://github.com/username"
                 />
               </div>
             </div>
 
+            {/* Personal Website */}
             <div className="space-y-2">
-              <label htmlFor="website" className="text-sm font-medium text-slate-700 dark:text-slate-300">Personal Website <span className="text-slate-400 font-normal">(Optional)</span></label>
+              <label htmlFor="join-website" className="text-sm font-medium text-slate-700 dark:text-slate-300">Personal Website <span className="text-slate-400 font-normal">(Optional)</span></label>
               <input
                 type="url"
-                id="website"
+                id="join-website"
+                name="website"
                 className="w-full px-4 py-3 rounded-xl bg-slate-50 dark:bg-[#030812] border border-slate-200 dark:border-slate-800/80 focus:outline-none focus:ring-2 focus:ring-orange-500/50 dark:text-white transition-all"
                 placeholder="https://yourwebsite.com"
               />
             </div>
 
+            {/* Motivation */}
             <div className="space-y-2">
-              <label htmlFor="reason" className="text-sm font-medium text-slate-700 dark:text-slate-300">Why do you want to join us? <span className="text-orange-500">*</span></label>
+              <label htmlFor="join-reason" className="text-sm font-medium text-slate-700 dark:text-slate-300">Why do you want to join us? <span className="text-orange-500">*</span></label>
               <textarea
-                id="reason"
+                id="join-reason"
+                name="reason"
                 required
                 rows={5}
                 className="w-full px-4 py-3 rounded-xl bg-slate-50 dark:bg-[#030812] border border-slate-200 dark:border-slate-800/80 focus:outline-none focus:ring-2 focus:ring-orange-500/50 dark:text-white transition-all resize-none"
@@ -125,15 +167,16 @@ export default function JoinPage() {
               ></textarea>
             </div>
 
+            {/* CV Upload */}
             <div className="space-y-2">
               <label className="text-sm font-medium text-slate-700 dark:text-slate-300">Resume / CV <span className="text-orange-500">*</span></label>
               <div className="mt-1 flex justify-center px-6 pt-5 pb-6 border-2 border-slate-300 dark:border-slate-700 border-dashed rounded-xl hover:border-orange-500/50 transition-colors cursor-pointer bg-slate-50 dark:bg-[#030812]">
                 <div className="space-y-2 text-center">
                   <UploadCloud className="mx-auto h-10 w-10 text-slate-400 dark:text-slate-500" />
                   <div className="flex text-sm text-slate-600 dark:text-slate-400 justify-center">
-                    <label htmlFor="file-upload" className="relative cursor-pointer rounded-md font-medium text-orange-500 hover:text-orange-400 focus-within:outline-none focus-within:ring-2 focus-within:ring-orange-500 focus-within:ring-offset-2">
+                    <label htmlFor="join-file-upload" className="relative cursor-pointer rounded-md font-medium text-orange-500 hover:text-orange-400 focus-within:outline-none focus-within:ring-2 focus-within:ring-orange-500 focus-within:ring-offset-2">
                       <span>Upload a file</span>
-                      <input id="file-upload" name="file-upload" type="file" className="sr-only" required />
+                      <input id="join-file-upload" name="resume" type="file" className="sr-only" required accept=".pdf,.doc,.docx" />
                     </label>
                     <p className="pl-1">or drag and drop</p>
                   </div>
@@ -142,6 +185,7 @@ export default function JoinPage() {
               </div>
             </div>
 
+            {/* Submit */}
             <div className="pt-4">
               <button
                 type="submit"
@@ -153,6 +197,6 @@ export default function JoinPage() {
           </form>
         </motion.div>
       </div>
-    </div>
+    </PageShell>
   )
 }

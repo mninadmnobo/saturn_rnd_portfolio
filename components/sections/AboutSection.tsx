@@ -1,4 +1,23 @@
-import { LeadershipTeam } from '@/components/sections/LeadershipTeam'
+/**
+ * AboutSection — mission, vision, what-we-do, and focus-area pillars,
+ * followed immediately by the `LeadershipTeam` section.
+ *
+ * Rendered as `id="about"` on the homepage so the Navbar's "About" link
+ * can scroll directly to it.
+ *
+ * ## Layout
+ * Four icon cards arranged in a 4-column grid (stacked on mobile) with a
+ * decorative gradient line connecting the icon circles on desktop.
+ * The `LeadershipTeam` component is embedded at the bottom — it has its own
+ * `id="leadership"` anchor so both nav links work correctly.
+ *
+ * ## How to update the mission/vision copy
+ * Edit the paragraph text directly in the JSX below. There is no data file
+ * for this section — the copy is intentionally inline because it rarely
+ * changes and is tightly coupled to the layout.
+ *
+ * @module components/sections/AboutSection
+ */
 import { Target, Eye, Lightbulb, Search, CheckCircle2 } from 'lucide-react'
 
 export const AboutSection = () => {
@@ -7,20 +26,20 @@ export const AboutSection = () => {
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="text-center mb-16">
           <h2 className="text-3xl md:text-4xl font-bold mb-6 text-orange-500 tracking-tight uppercase">About Us</h2>
-          
+
           {/* Decorative Divider */}
           <div className="relative max-w-xl mx-auto h-[1px] mb-8 bg-gradient-to-r from-transparent via-orange-500/50 to-transparent">
             <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-1.5 h-1.5 rounded-full bg-orange-500 shadow-[0_0_8px_2px_rgba(249,115,22,0.6)]" />
           </div>
 
           <p className="text-lg text-slate-600 dark:text-slate-400 max-w-3xl mx-auto">
-            The R&D Department of Saturn Textiles Limited is committed to advancing the textile industry through smart automation and sustainable technology.
+            The R&D Department of Saturn Textiles Limited is committed to advancing the textile industry through smart automation and sustainable technology
           </p>
         </div>
 
         {/* Mission, Vision, What We Do, Focus Areas */}
         <div className="relative mb-24">
-          {/* Horizontal Connection Line */}
+          {/* Decorative horizontal connector line (desktop only) */}
           <div className="absolute top-12 left-0 right-0 h-[1px] bg-gradient-to-r from-transparent via-orange-500/20 to-transparent hidden lg:block" />
 
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-x-8 gap-y-16">
@@ -98,9 +117,6 @@ export const AboutSection = () => {
           </div>
         </div>
       </div>
-
-      {/* Our Team Section */}
-      <LeadershipTeam />
     </section>
   )
 }
