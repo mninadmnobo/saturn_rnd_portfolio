@@ -1,5 +1,5 @@
 /**
- * Join page (/join) — application form for prospective team members.
+ * Join Us page (/join_us) — application form for prospective team members.
  *
  * Collects: full name, email, phone, address, LinkedIn, GitHub, personal
  * website, motivation statement, and CV/resume file upload.
@@ -19,7 +19,7 @@
  * }
  * ```
  *
- * @module app/join/page
+ * @module app/join_us/page
  */
 'use client'
 

@@ -25,7 +25,7 @@ import { motion, AnimatePresence } from 'framer-motion'
 import Link from 'next/link'
 import { ChevronDown, User } from 'lucide-react'
 import { teamDepartments } from '@/lib/data/leaders'
-import { MemberModal } from '@/components/ui/MemberModal'
+import { LeaderDetails } from '@/components/ui/LeaderDetails'
 import { fadeInUpVariants, staggerContainer, defaultViewport } from '@/lib/animations'
 import type { TeamMember } from '@/lib/data/leaders'
 
@@ -176,7 +176,7 @@ export function LeadersSection() {
       {/* ── Member Profile Modal ──────────────────────────────── */}
       <AnimatePresence>
         {selectedMember && (
-          <MemberModal
+          <LeaderDetails
             member={selectedMember}
             isFeatured={selectedIdx === 0}
             onClose={() => setSelectedMember(null)}

@@ -48,7 +48,7 @@ export const Hero = () => (
             <Link href="/#leaders" className="inline-flex items-center justify-center gap-2 rounded-xl bg-gradient-to-r from-orange-600 to-orange-500 px-6 py-3 text-sm font-semibold text-white shadow-lg shadow-orange-500/20 dark:shadow-orange-950/50 transition-all duration-300 hover:brightness-110 hover:-translate-y-1 hover:scale-105 hover:shadow-orange-500/50 whitespace-nowrap">
               Meet Our Leaders <ArrowRight className="h-4 w-4" />
             </Link>
-            <Link href="/join" className="inline-flex items-center justify-center gap-2 rounded-xl bg-gradient-to-r from-orange-600 to-orange-500 px-6 py-3 text-sm font-semibold text-white shadow-lg shadow-orange-500/20 dark:shadow-orange-950/50 transition-all duration-300 hover:brightness-110 hover:-translate-y-1 hover:scale-105 hover:shadow-orange-500/50 whitespace-nowrap">
+            <Link href="/join_us" className="inline-flex items-center justify-center gap-2 rounded-xl bg-gradient-to-r from-orange-600 to-orange-500 px-6 py-3 text-sm font-semibold text-white shadow-lg shadow-orange-500/20 dark:shadow-orange-950/50 transition-all duration-300 hover:brightness-110 hover:-translate-y-1 hover:scale-105 hover:shadow-orange-500/50 whitespace-nowrap">
               Join Our Team <ArrowRight className="h-4 w-4" />
             </Link>
           </div>

@@ -1,15 +1,10 @@
 /**
- * MemberModal — full-profile popup for a single team member.
+ * LeaderDetails — full-profile popup modal for a single team leader.
  *
  * Rendered via AnimatePresence in LeadersSection when the user clicks
- * "View Details" on a card.
+ * "View Details" on a leadership card.
  *
- * Features:
- *   - Fixed header on scroll
- *   - Gradient border glow & dark color grading
- *   - Full background blur & responsive typography
- *
- * @module components/ui/MemberModal
+ * @module components/ui/LeaderDetails
  */
 'use client'
 
@@ -19,13 +14,13 @@ import Link from 'next/link'
 import { X, Mail, ExternalLink, User } from 'lucide-react'
 import type { TeamMember } from '@/lib/data/leaders'
 
-interface MemberModalProps {
+interface LeaderDetailsProps {
   member: TeamMember
   isFeatured: boolean
   onClose: () => void
 }
 
-export function MemberModal({ member, isFeatured, onClose }: MemberModalProps) {
+export function LeaderDetails({ member, isFeatured, onClose }: LeaderDetailsProps) {
   // Lock background scroll while modal is mounted
   useEffect(() => {
     document.body.style.overflow = 'hidden'

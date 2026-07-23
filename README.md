@@ -75,8 +75,8 @@ saturn_rnd_portfolio/
 │   ├── layout.tsx                  # Root layout (metadata, global CSS, providers)
 │   ├── page.tsx                    # Homepage (/) — single scrolling page
 │   ├── globals.css                 # Tailwind imports + CSS design tokens
-│   └── join/
-│       └── page.tsx                # /join — job application form
+│   ├── join_us/
+│   │   └── page.tsx                # /join_us — job application form
 │
 ├── components/
 │   ├── layout/                     # Site-wide structural components

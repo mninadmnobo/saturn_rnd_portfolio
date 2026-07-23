@@ -38,7 +38,7 @@ export const ContactSection = () => {
         <div className="text-center mb-16">
           <h2 className="text-3xl md:text-4xl font-bold mb-4 text-orange-500 uppercase">Connect with Us</h2>
           <p className="text-lg text-slate-600 dark:text-slate-400">
-            Have a project in mind or want to collaborate? Send us a message and our R&D team will get back to you. If you want to join our team <a href="/join" className="font-semibold text-orange-500 hover:text-orange-400 underline underline-offset-4 transition-colors">click here</a>
+            Have a project in mind or want to collaborate? Send us a message and our R&D team will get back to you. If you want to join our team <a href="/join_us" className="font-semibold text-orange-500 hover:text-orange-400 underline underline-offset-4 transition-colors">click here</a>
           </p>
         </div>
 
