@@ -1,122 +1,73 @@
-# Saturn Textiles — Marketing Site
+# Saturn Textiles Limited - R&D Portfolio
 
-A Next.js (App Router) marketing site for Saturn Textiles: a homepage plus
-content pages for research, projects, news, achievements, gallery, and the
-leadership team.
+Welcome to the official **R&D Department Portfolio** of Saturn Textiles Limited. This repository hosts a state-of-the-art web application showcasing our initiatives, research, and breakthroughs in smart textile automation, advanced materials, and data intelligence.
 
-## Stack
+## 🚀 Overview
 
-- **Next.js 16** (App Router, React 19)
-- **TypeScript**, strict mode
-- **Tailwind CSS v4**, theme driven by CSS custom properties (`app/globals.css`)
-- **framer-motion** for scroll-triggered entrance animations
-- **lucide-react** for icons
-- **next-themes** for the light/dark toggle
+Saturn Textiles Limited is committed to advancing the textile industry through smart automation and sustainable technology. This portfolio serves as a hub to present our mission, vision, and the projects led by our highly skilled AI and Engineering teams.
 
-## Getting started
+### Key Focus Areas
+- **Intelligent Automation:** Automating textile processes to enhance precision, quality, and productivity.
+- **Smart Textile Innovation:** Developing advanced materials and intelligent solutions.
+- **Data Intelligence & Analytics:** Harnessing data for real-time monitoring and operational excellence.
+- **Sustainability & Circularity:** Building eco-friendly, responsible solutions for a better tomorrow.
 
-```bash
-pnpm install
-pnpm dev      # http://localhost:3000
-pnpm build    # production build
-pnpm lint
-```
+## 🛠 Tech Stack
 
-## Project structure
+The platform is built with modern, performant, and highly interactive web technologies:
 
-```
-app/                     Routes (App Router). Each subpage follows the same
-                          PageShell + PageHeader + content pattern.
-components/
-  layout/                Navbar, Footer, PageShell, PageHeader
-  sections/              Homepage sections (Hero, Statistics, LeadershipTeam)
-  cards/                 ProfileCard and other content cards
-  ui/                     Small, generic, reusable primitives (Badge, Button, FormField)
-  providers/             ThemeProvider
-lib/
-  data/                  All page content — the only place you should need
-                          to touch to add or edit content (see below)
-  animations.ts          Shared framer-motion presets
-  icons.ts               Typed icon name → lucide-react component registry
-  utils.ts               `cn()` class-name helper
-```
+- **Framework:** [Next.js 15+](https://nextjs.org/) (App Router)
+- **Library:** [React](https://react.dev/)
+- **Styling:** [Tailwind CSS](https://tailwindcss.com/)
+- **Animations:** [Framer Motion](https://www.framer.com/motion/)
+- **Icons:** [Lucide React](https://lucide.dev/)
+- **Language:** [TypeScript](https://www.typescriptlang.org/)
 
-## How to add content
+## 💻 Getting Started
 
-Every content page reads from a plain, typed array in `lib/data/`. **You do
-not need to touch any page or component to add an entry** — just add an
-object to the relevant array. Each file has a "How to add a new X" doc
-comment at the top with a copy-pasteable example; the quick reference is
-below.
+To run the project locally, follow these steps:
 
-| Content | File | Notes |
-|---|---|---|
-| Team member / leadership | `lib/data/team.ts` | First member of the first department renders as the featured hero card (e.g. Managing Director); the rest render in a grid beneath it. |
-| Research area | `lib/data/research.ts` | `icon` must be a name registered in `lib/icons.ts`. |
-| Project | `lib/data/projects.ts` | `status` drives the badge color (`active` → success, `planning` → warning, `completed` → info). |
-| Future / roadmap project | `lib/data/futureProjects.ts` | `priority` drives the badge color + icon (`critical` → danger, `high` → warning, `medium` → info). |
-| Achievement stat | `lib/data/achievements.ts` | `icon` must be a name registered in `lib/icons.ts`. |
-| News post | `lib/data/news.ts` | Set `featured: true` to show it in the "Featured" grid instead of the regular list. |
-| Gallery item | `lib/data/gallery.ts` | `width`/`height` (1 or 2) control how many grid cells the tile spans. |
-| Tech stack category | `lib/data/techStack.ts` | Add a category, or push a string onto an existing category's `technologies`. |
+### Prerequisites
+- Node.js (v18.17 or newer recommended)
+- `pnpm` (recommended), `npm`, or `yarn`
 
-**Adding an icon that isn't registered yet:** import it in `lib/icons.ts`
-and add it to `iconRegistry`. Data files reference icons by name (e.g.
-`icon: 'Leaf'`) typed against that registry, so a typo is a compile error
-instead of a silently-missing icon.
+### Installation
 
-## Building a new page
+1. **Clone the repository:**
+   ```bash
+   git clone https://github.com/mninadmnobo/saturn_rnd_portfolio.git
+   cd saturn_rnd_portfolio
+   ```
 
-Use `PageShell` + `PageHeader` instead of re-declaring the navbar/footer
-boilerplate:
+2. **Install dependencies:**
+   ```bash
+   pnpm install
+   ```
 
-```tsx
-import { PageShell } from '@/components/layout/PageShell'
-import { PageHeader } from '@/components/layout/PageHeader'
+3. **Start the development server:**
+   ```bash
+   pnpm dev
+   ```
 
-export default function ExamplePage() {
-  return (
-    <PageShell>
-      <PageHeader title="Example" description="One sentence describing the page." />
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-20">
-        {/* page content */}
-      </div>
-    </PageShell>
-  )
-}
-```
+4. Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
 
-For entrance animations, use the helpers in `lib/animations.ts` rather than
-writing a new `{ initial, whileInView, transition }` object:
+## 📁 Project Structure
 
-```tsx
-import { motion } from 'framer-motion'
-import { fadeUpProps } from '@/lib/animations'
+- `app/` - Next.js App Router pages and layouts.
+- `components/` - Reusable React components (UI elements, sections, layout wrappers).
+- `lib/` - Utility functions, animations, and static data files (team, projects, etc.).
+- `public/` - Static assets such as images and icons.
 
-{items.map((item, idx) => (
-  <motion.div key={item.id} {...fadeUpProps(idx * 0.05)}>...</motion.div>
-))}
-```
+## ✨ Highlights
 
-For statuses, priorities, categories, or tags, use `<Badge>`
-(`components/ui/badge.tsx`) instead of a one-off `<span>` — it has five
-theme-aware tones (`neutral`, `info`, `success`, `warning`, `danger`) so new
-badges automatically look correct in both light and dark mode.
+- **Dynamic Animations:** Scroll-triggered micro-interactions and smooth page transitions using Framer Motion.
+- **Dark Mode Support:** First-class responsive UI featuring polished light and dark mode implementations.
+- **Modular Architecture:** Easy-to-maintain structure with decoupled UI components and strictly typed data files.
 
-## Theming
+## 👥 Meet the Team
 
-All color is driven by CSS custom properties defined once in
-`app/globals.css` (light values under `:root`, dark values under `.dark`).
-Components should reference the semantic Tailwind tokens (`bg-secondary`,
-`text-muted-foreground`, `border-border`, `bg-chart-4`, etc.) rather than
-hardcoded colors (`bg-blue-500`) or raw `dark:` overrides, so everything
-re-grades correctly when the theme changes. `next-themes` toggles the
-`.dark` class on `<html>`; see `components/providers/ThemeProvider.tsx`.
+Our world-class leadership and research team drives textile technology into the future through AI, materials science, and engineering excellence. Learn more about their contributions in the **Our Leaders** section.
 
-## Adding a UI primitive
+---
 
-Shared, generic building blocks (used by more than one page) live in
-`components/ui/`. Page- or section-specific components live next to what
-uses them (`components/sections/`, `components/cards/`). If you find
-yourself copy-pasting a chunk of markup across two or more pages, that's
-the signal to extract it into `components/ui/` instead.
+*For inquiries or collaboration, please reach out via our [contact page](http://localhost:3000/contact) or connect with our leads directly.*
