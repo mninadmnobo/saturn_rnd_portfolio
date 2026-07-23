@@ -16,7 +16,7 @@
 import { useEffect } from 'react'
 import { motion } from 'framer-motion'
 import Link from 'next/link'
-import { X, Mail, ExternalLink } from 'lucide-react'
+import { X, Mail, ExternalLink, User } from 'lucide-react'
 import type { TeamMember } from '@/lib/data/leaders'
 
 interface MemberModalProps {
@@ -88,8 +88,8 @@ export function MemberModal({ member, isFeatured, onClose }: MemberModalProps) {
                   className="w-full h-full object-cover rounded-full"
                 />
               ) : (
-                <div className="w-full h-full rounded-full bg-slate-100 dark:bg-slate-800 flex items-center justify-center text-xl font-bold text-slate-400">
-                  {member.name.substring(0, 2).toUpperCase()}
+                <div className="w-full h-full rounded-full bg-slate-100 dark:bg-slate-800 flex items-center justify-center text-slate-400">
+                  <User className="w-10 h-10 text-orange-500/80" />
                 </div>
               )}
             </div>

@@ -18,7 +18,7 @@
  *
  * @module components/sections/AboutSection
  */
-import { Target, Eye, Lightbulb, Search, CheckCircle2 } from 'lucide-react'
+import { Target, Globe, Cpu, Layers, CheckCircle2 } from 'lucide-react'
 
 export const AboutSection = () => {
   return (
@@ -63,7 +63,7 @@ export const AboutSection = () => {
               <div className="relative mb-6">
                 <div className="absolute top-1/2 -left-12 -translate-y-1/2 w-1.5 h-1.5 rounded-full bg-blue-500 shadow-[0_0_8px_2px_rgba(59,130,246,0.4)] dark:shadow-[0_0_8px_2px_rgba(59,130,246,0.6)] hidden lg:block" />
                 <div className="w-24 h-24 rounded-full border border-blue-500/20 dark:border-blue-500/30 flex items-center justify-center bg-white dark:bg-[#071526]/80 group-hover:border-blue-500/60 transition-colors relative z-10 shadow-[inset_0_0_20px_rgba(59,130,246,0.05)] group-hover:shadow-[inset_0_0_30px_rgba(59,130,246,0.15)]">
-                  <Eye className="w-10 h-10 text-blue-500" strokeWidth={1.5} />
+                  <Globe className="w-10 h-10 text-blue-500" strokeWidth={1.5} />
                 </div>
               </div>
               <h3 className="text-sm font-bold text-slate-900 dark:text-white mb-3 tracking-wider uppercase">OUR VISION</h3>
@@ -77,7 +77,7 @@ export const AboutSection = () => {
               <div className="relative mb-6">
                 <div className="absolute top-1/2 -left-12 -translate-y-1/2 w-1.5 h-1.5 rounded-full bg-orange-500 shadow-[0_0_8px_2px_rgba(249,115,22,0.4)] dark:shadow-[0_0_8px_2px_rgba(249,115,22,0.6)] hidden lg:block" />
                 <div className="w-24 h-24 rounded-full border border-orange-500/20 dark:border-orange-500/30 flex items-center justify-center bg-white dark:bg-[#071526]/80 group-hover:border-orange-500/60 transition-colors relative z-10 shadow-[inset_0_0_20px_rgba(249,115,22,0.05)] group-hover:shadow-[inset_0_0_30px_rgba(249,115,22,0.15)]">
-                  <Lightbulb className="w-10 h-10 text-orange-500" strokeWidth={1.5} />
+                  <Cpu className="w-10 h-10 text-orange-500" strokeWidth={1.5} />
                 </div>
               </div>
               <h3 className="text-sm font-bold text-slate-900 dark:text-white mb-3 tracking-wider uppercase">WHAT WE DO</h3>
@@ -91,7 +91,7 @@ export const AboutSection = () => {
               <div className="relative mb-6">
                 <div className="absolute top-1/2 -left-12 -translate-y-1/2 w-1.5 h-1.5 rounded-full bg-blue-500 shadow-[0_0_8px_2px_rgba(59,130,246,0.4)] dark:shadow-[0_0_8px_2px_rgba(59,130,246,0.6)] hidden lg:block" />
                 <div className="w-24 h-24 rounded-full border border-blue-500/20 dark:border-blue-500/30 flex items-center justify-center bg-white dark:bg-[#071526]/80 group-hover:border-blue-500/60 transition-colors relative z-10 shadow-[inset_0_0_20px_rgba(59,130,246,0.05)] group-hover:shadow-[inset_0_0_30px_rgba(59,130,246,0.15)]">
-                  <Search className="w-10 h-10 text-blue-500" strokeWidth={1.5} />
+                  <Layers className="w-10 h-10 text-blue-500" strokeWidth={1.5} />
                 </div>
               </div>
               <h3 className="text-sm font-bold text-slate-900 dark:text-white mb-3 tracking-wider uppercase">OUR FOCUS AREAS</h3>

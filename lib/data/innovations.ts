@@ -47,7 +47,7 @@ export const projects: Project[] = [
     status: 'active',
     progress: 90,
     technologies: ['Machine Learning', 'Computer Vision (YOLOv8)', 'Spring Boot & Java', 'Hikrobot SDK', 'React & Next.js', 'FastAPI & Node.js'],
-    startDate: '2023-08-01',
+    startDate: '2026-01-15',
     category: 'Industrial AI',
   },
 ]

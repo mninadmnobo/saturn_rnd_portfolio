@@ -17,7 +17,7 @@
 'use client'
 
 import { motion } from 'framer-motion'
-import { Cpu, Grid, Layers, Leaf } from 'lucide-react'
+import { Bot, Sparkles, Activity, Leaf } from 'lucide-react'
 import { fadeUpProps } from '@/lib/animations'
 import type { LucideIcon } from 'lucide-react'
 
@@ -26,17 +26,17 @@ const FEATURES: { title: string; description: string; icon: LucideIcon }[] = [
   {
     title: 'INTELLIGENT AUTOMATION',
     description: 'Automating textile processes to enhance precision, quality, and productivity.',
-    icon: Cpu,
+    icon: Bot,
   },
   {
     title: 'SMART TEXTILE INNOVATION',
     description: 'Developing advanced materials and intelligent solutions for performance and sustainability.',
-    icon: Layers,
+    icon: Sparkles,
   },
   {
     title: 'QUALITY & EFFICIENCY',
     description: 'Data-driven insights and real-time monitoring to ensure superior quality and operational excellence.',
-    icon: Grid,
+    icon: Activity,
   },
   {
     title: 'SUSTAINABLE FUTURE',

@@ -76,7 +76,6 @@ export const teamDepartments: Department[] = [
           'Grant acquisition and funding strategy',
           'Vision for future textile technologies',
         ],
-        image: '/saturn-logo.png',
       },
       {
         id: 'rahin',

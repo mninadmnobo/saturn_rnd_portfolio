@@ -23,7 +23,7 @@
 import { useState } from 'react'
 import { motion, AnimatePresence } from 'framer-motion'
 import Link from 'next/link'
-import { ChevronDown } from 'lucide-react'
+import { ChevronDown, User } from 'lucide-react'
 import { teamDepartments } from '@/lib/data/leaders'
 import { MemberModal } from '@/components/ui/MemberModal'
 import { fadeInUpVariants, staggerContainer, defaultViewport } from '@/lib/animations'
@@ -88,8 +88,8 @@ export function LeadersSection() {
             variants={itemVariants}
             className="text-lg md:text-xl text-slate-600 dark:text-slate-400 max-w-3xl mx-auto leading-relaxed"
           >
-            Meet the leadership and engineering professionals driving AI, automation,
-            and next-generation textile innovation at Saturn Textiles Limited.
+            Meet the leadership and engineering professionals driving Artifical Intelligence, Industrial Automation,
+            and next-generation Textile Innovation
           </motion.p>
         </motion.div>
 
@@ -123,8 +123,8 @@ export function LeadersSection() {
                         className="w-full h-full object-cover rounded-full"
                       />
                     ) : (
-                      <div className="w-full h-full rounded-full bg-slate-100 dark:bg-slate-800 flex items-center justify-center text-3xl font-bold text-slate-400">
-                        {member.name.substring(0, 2).toUpperCase()}
+                      <div className="w-full h-full rounded-full bg-slate-100 dark:bg-slate-800 flex items-center justify-center text-slate-400">
+                        <User className="w-20 h-20 text-orange-500/80" />
                       </div>
                     )}
                   </div>

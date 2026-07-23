@@ -6,14 +6,17 @@ export function cn(...inputs: ClassValue[]) {
 }
 
 /**
- * Format an ISO date string for display.
+ * Format an ISO date string for display in International Standard format (e.g., 15 January 2026).
  *
- * Always pins the locale to `en-US` instead of relying on the runtime's
- * default (`toLocaleDateString()` with no arguments) — the server and the
- * browser can have different default locales, which otherwise produces a
- * React hydration mismatch (e.g. server renders "7/20/2024", browser
- * re-renders "20/07/2024").
+ * Uses `en-GB` with day, month ('long'), and year options to ensure consistent Day Month Year
+ * formatting across both server and client without hydration mismatch.
  */
 export function formatDate(isoDate: string, options?: Intl.DateTimeFormatOptions) {
-  return new Date(isoDate).toLocaleDateString('en-US', options)
+  const defaultOptions: Intl.DateTimeFormatOptions = {
+    day: 'numeric',
+    month: 'long',
+    year: 'numeric',
+    ...options,
+  }
+  return new Date(isoDate).toLocaleDateString('en-GB', defaultOptions)
 }
