@@ -23,12 +23,19 @@
  */
 'use client'
 
+import { useState } from 'react'
 import { motion } from 'framer-motion'
 import { ArrowLeft, UploadCloud } from 'lucide-react'
 import Link from 'next/link'
 import { PageShell } from '@/components/layout/PageShell'
+import { cn } from '@/lib/utils'
 
 export default function JoinPage() {
+  const [reason, setReason] = useState('')
+  const MAX_WORDS = 250
+  const wordCount = reason.trim() ? reason.trim().split(/\s+/).length : 0
+  const isOverWordLimit = wordCount > MAX_WORDS
+
   return (
     <PageShell>
       <div className="max-w-3xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
@@ -156,15 +163,34 @@ export default function JoinPage() {
 
             {/* Motivation */}
             <div className="space-y-2">
-              <label htmlFor="join-reason" className="text-sm font-medium text-slate-700 dark:text-slate-300">Why do you want to join us? <span className="text-orange-500">*</span></label>
+              <div className="flex justify-between items-center">
+                <label htmlFor="join-reason" className="text-sm font-medium text-slate-700 dark:text-slate-300">
+                  Why do you want to join us? <span className="text-orange-500">*</span>
+                </label>
+                <span className={cn("text-xs font-semibold", isOverWordLimit ? "text-red-500 font-bold" : "text-slate-400")}>
+                  {wordCount} / {MAX_WORDS} words
+                </span>
+              </div>
               <textarea
                 id="join-reason"
                 name="reason"
                 required
                 rows={5}
-                className="w-full px-4 py-3 rounded-xl bg-slate-50 dark:bg-[#030812] border border-slate-200 dark:border-slate-800/80 focus:outline-none focus:ring-2 focus:ring-orange-500/50 dark:text-white transition-all resize-none"
-                placeholder="Tell us about your passion for textile innovation and automation..."
-              ></textarea>
+                value={reason}
+                onChange={(e) => setReason(e.target.value)}
+                className={cn(
+                  "w-full px-4 py-3 rounded-xl bg-slate-50 dark:bg-[#030812] border focus:outline-none focus:ring-2 dark:text-white transition-all resize-none text-sm",
+                  isOverWordLimit
+                    ? "border-red-500 focus:ring-red-500/50"
+                    : "border-slate-200 dark:border-slate-800/80 focus:ring-orange-500/50"
+                )}
+                placeholder="Tell us about your passion for textile innovation and automation (Max 250 words)..."
+              />
+              {isOverWordLimit && (
+                <p className="text-xs text-red-500 font-semibold mt-1">
+                  Please shorten your response to 250 words or less.
+                </p>
+              )}
             </div>
 
             {/* CV Upload */}
@@ -189,7 +215,13 @@ export default function JoinPage() {
             <div className="pt-4">
               <button
                 type="submit"
-                className="w-full flex justify-center py-4 px-4 border border-transparent rounded-xl shadow-sm text-sm font-bold text-white bg-gradient-to-r from-orange-600 to-orange-500 hover:from-orange-500 hover:to-orange-400 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-orange-500 transition-all shadow-orange-500/25 hover:shadow-orange-500/40"
+                disabled={isOverWordLimit}
+                className={cn(
+                  "w-full flex justify-center py-4 px-4 border border-transparent rounded-xl shadow-sm text-sm font-bold text-white transition-all cursor-pointer",
+                  isOverWordLimit
+                    ? "bg-slate-400 dark:bg-slate-700 cursor-not-allowed opacity-60"
+                    : "bg-gradient-to-r from-orange-600 to-orange-500 hover:from-orange-500 hover:to-orange-400 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-orange-500 shadow-orange-500/25 hover:shadow-orange-500/40"
+                )}
               >
                 Submit Application
               </button>
