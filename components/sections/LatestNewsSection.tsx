@@ -1,13 +1,13 @@
 /**
  * LatestNewsSection — latest news and announcements, shown on the homepage.
  *
- * Reads from `lib/data/news.ts` (the single source of truth for all news).
+ * Reads from `lib/data/latest-news.ts` (the single source of truth for all news).
  * News items with `featured: true` are rendered in a larger 2-column card
  * grid at the top ("Featured"). All other items render as a compact list
  * below ("Recent Updates").
  *
  * ## How to add a news item
- * Edit `lib/data/news.ts` — do NOT hard-code news data here.
+ * Edit `lib/data/latest-news.ts` — do NOT hard-code news data here.
  * Set `featured: true` to promote an item into the featured grid.
  *
  * ## Future: Article detail pages

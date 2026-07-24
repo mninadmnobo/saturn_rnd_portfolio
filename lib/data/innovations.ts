@@ -11,7 +11,6 @@
  *   title: 'Project name',
  *   description: 'One to two sentences describing the project.',
  *   status: 'planning',       // 'active' | 'planning' | 'completed'
- *   progress: 10,             // 0-100, drives the progress bar
  *   technologies: ['Chemistry', 'AI/ML'],
  *   startDate: '2024-01-15',  // ISO date string
  *   category: 'Smart Textiles',
@@ -19,23 +18,23 @@
  * ```
  */
 export interface Project {
-  /** Unique identifier — used as the React list key. */
+  /** Unique identifier — used as the React list key (e.g. 'fabins'). */
   id: string
+  /** Display title of the project. */
   title: string
+  /** Comprehensive summary of project goals and implementation. */
   description: string
-  /** Drives the status badge's color. */
+  /** Current lifecycle phase — drives status badge tone ('active' | 'planning' | 'completed'). */
   status: 'active' | 'planning' | 'completed'
-  /** Completion percentage (0-100), drives the animated progress bar. */
-  progress: number
-  /** Short tags describing the tech/disciplines involved. */
+  /** Technology stack and engineering domain tags. */
   technologies: string[]
-  /** ISO date string. */
+  /** ISO date string (YYYY-MM-DD) indicating when project commenced. */
   startDate: string
-  /** ISO date string. Only set once the project has actually concluded. */
+  /** Optional ISO date string indicating when project concluded. */
   endDate?: string
-  /** Optional image path. */
+  /** Optional project preview graphic path (relative to /public). */
   image?: string
-  /** Grouping label, shown for future filtering. */
+  /** Category grouping tag for UI filtering (e.g. 'Industrial AI'). */
   category: string
 }
 
@@ -45,7 +44,6 @@ export const projects: Project[] = [
     title: 'FABINS - Fabric Inspection Automation',
     description: 'An intelligent real-time fabric fault detection system utilizing computer vision models, high-resolution camera integration, and automated industrial defect classification.',
     status: 'active',
-    progress: 90,
     technologies: ['Machine Learning', 'Computer Vision (YOLOv8)', 'Spring Boot & Java', 'Hikrobot SDK', 'React & Next.js', 'FastAPI & Node.js'],
     startDate: '2026-01-15',
     category: 'Industrial AI',

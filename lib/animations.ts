@@ -20,8 +20,8 @@ import type { Transition, Variants } from 'framer-motion'
 /** Standard ease used for every entrance animation on the site. */
 const EASE_OUT: Transition['ease'] = 'easeOut'
 
-/** Standard viewport trigger: animate once, slightly before it's fully in view. */
-export const defaultViewport = { once: true, margin: '-100px' } as const
+/** Standard viewport trigger: animate every time it enters the view. */
+export const defaultViewport = { once: false, margin: '-100px' } as const
 
 /**
  * Parent wrapper variants that stagger its children's entrance animations.

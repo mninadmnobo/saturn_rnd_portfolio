@@ -6,15 +6,26 @@
  *
  * @module lib/data/latest-news
  */
+
+/** Represents a single news milestone or institutional announcement. */
 export interface NewsItem {
+  /** Unique identifier — used as React list key. */
   id: string
+  /** Headline title of the milestone. */
   title: string
+  /** Short 1-2 sentence preview description for card layout. */
   description: string
+  /** Full announcement body content. */
   content: string
+  /** Category tag (e.g. 'Institutional Funding', 'R&D Execution'). */
   category: string
+  /** ISO date string (YYYY-MM-DD) of publication. */
   date: string
+  /** Authoring team or executive board entity. */
   author: string
+  /** Optional news thumbnail image path (relative to /public). */
   image?: string
+  /** Optional flag marking milestone as featured (promotes to top grid). */
   featured?: boolean
 }
 

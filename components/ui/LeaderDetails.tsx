@@ -171,7 +171,7 @@ export function LeaderDetails({ member, isFeatured, onClose }: LeaderDetailsProp
                 {member.social?.scholar && (
                   <Link href={member.social.scholar} target="_blank" rel="noopener noreferrer"
                     className="flex items-center gap-2 text-blue-500 hover:text-blue-400 transition-colors">
-                    <ExternalLink className="w-4 h-4 shrink-0" /> <span className="font-semibold text-slate-700 dark:text-slate-200">Google Scholar:</span> M Ninad M Nobo
+                    <ExternalLink className="w-4 h-4 shrink-0" /> <span className="font-semibold text-slate-700 dark:text-slate-200">Google Scholar:</span> {member.social.scholarName}
                   </Link>
                 )}
                 {member.social?.orcid && (

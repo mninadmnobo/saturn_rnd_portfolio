@@ -125,6 +125,7 @@ export function LeadersSection() {
                       {member.name}
                     </h3>
                     <p className="text-sm font-semibold text-blue-500 dark:text-blue-400">{member.title}</p>
+                    <p className="text-xs text-slate-600 dark:text-slate-400 mt-2 line-clamp-2 max-w-xs mx-auto">{member.bio}</p>
                   </div>
 
                   <div className="mt-auto">
