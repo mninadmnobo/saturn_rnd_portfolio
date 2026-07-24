@@ -38,7 +38,7 @@ export const Hero = () => (
             <span className="bg-gradient-to-r from-orange-600 via-orange-200 to-blue-400 bg-clip-text text-transparent">Textile Innovation</span><br />
             <span className="text-slate-600 dark:text-slate-400">and Automation</span>
           </h1>
-          <p className="mt-6 max-w-xl text-lg leading-relaxed text-slate-600 dark:text-slate-300 text-justify">
+          <p className="mt-6 max-w-xl text-lg leading-relaxed text-slate-600 dark:text-slate-300 text-left">
             We build smart solutions that modernize production, drive efficiency, and solve complex challenges in the textile industry.
           </p>
           <div className="mt-8 flex flex-nowrap items-center gap-2">
@@ -54,21 +54,63 @@ export const Hero = () => (
           </div>
         </motion.div>
 
-        {/* Right — Hero Image */}
+        {/* Right — Hero Image with Floating Motion */}
         <motion.div
           initial={{ opacity: 0, scale: 0.96 }}
           animate={{ opacity: 1, scale: 1 }}
           transition={{ duration: 0.65, delay: 0.1 }}
-          className="relative lg:-mt-20"
+          className="relative lg:-mt-20 flex items-center justify-center"
         >
-          <div className="relative w-full">
+          {/* Deep Dark Ambient Glow */}
+          <div className="absolute inset-0 bg-gradient-to-r from-blue-700/25 via-orange-600/20 to-amber-600/25 blur-[100px] rounded-full -z-10 transform scale-110 pointer-events-none" />
+
+          {/* Smooth Floating Weightless Motion for Logo Graphic & Stable Border */}
+          <motion.div
+            animate={{ y: [0, -10, 0] }}
+            transition={{ duration: 5, repeat: Infinity, ease: 'easeInOut' }}
+            className="relative w-full scale-[1.28] flex items-center justify-center"
+          >
+            {/* Seamlessly Matched Glowing Neon Border Overlay */}
+            <svg
+              className="absolute inset-0 w-full h-full pointer-events-none z-10 opacity-75"
+              viewBox="0 0 1280 720"
+              preserveAspectRatio="none"
+              style={{ mixBlendMode: 'screen' }}
+            >
+              <defs>
+                <linearGradient id="matched-border-gradient" x1="0%" y1="0%" x2="100%" y2="100%">
+                  <stop offset="0%" stopColor="#f97316" />
+                  <stop offset="45%" stopColor="#38bdf8" />
+                  <stop offset="100%" stopColor="#f97316" />
+                </linearGradient>
+              </defs>
+
+              {/* Matched Glowing Border Line */}
+              <rect
+                x="76"
+                y="160"
+                width="1128"
+                height="398"
+                rx="62"
+                ry="62"
+                fill="none"
+                stroke="url(#matched-border-gradient)"
+                strokeWidth="7.8"
+                vectorEffect="non-scaling-stroke"
+                style={{ filter: 'drop-shadow(0 0 12px rgba(249,115,22,0.75)) drop-shadow(0 0 12px rgba(56,189,248,0.75))' }}
+              />
+            </svg>
+
             <img
               src="/saturn-image.png"
               alt="Saturn Textiles Limited Research and Development Division"
-              className="mx-auto block h-auto w-full object-contain scale-[1.12]"
-              style={{ mixBlendMode: 'lighten' }}
+              className="mx-auto block h-auto w-full object-contain drop-shadow-[0_0_35px_rgba(57,120,206,0.4)] drop-shadow-[0_0_35px_rgba(249,115,22,0.4)]"
+              style={{
+                mixBlendMode: 'lighten',
+                filter: 'contrast(1.45) brightness(1.06) saturate(1.5) hue-rotate(16deg)',
+              }}
             />
-          </div>
+          </motion.div>
         </motion.div>
       </div>
     </div>
