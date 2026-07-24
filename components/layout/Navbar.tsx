@@ -25,6 +25,7 @@
 
 import { useState, useEffect } from 'react'
 import Link from 'next/link'
+import { usePathname } from 'next/navigation'
 import { Menu, X } from 'lucide-react'
 
 /** Static link definitions. Defined outside the component to avoid re-creating the array on every render. */
@@ -37,11 +38,22 @@ const NAV_LINKS = [
 ] as const
 
 export const Navbar = () => {
+  const pathname = usePathname()
+  const isHomePage = pathname === '/'
+
   const [isOpen, setIsOpen] = useState(false)
   const [scrolled, setScrolled] = useState(false)
-  const [activeSection, setActiveSection] = useState('home')
+  const [activeSection, setActiveSection] = useState(isHomePage ? 'home' : '')
 
   useEffect(() => {
+    if (!isHomePage) {
+      setActiveSection('')
+      const handleOtherScroll = () => setScrolled(window.scrollY > 50)
+      window.addEventListener('scroll', handleOtherScroll)
+      handleOtherScroll()
+      return () => window.removeEventListener('scroll', handleOtherScroll)
+    }
+
     const handleScroll = () => {
       setScrolled(window.scrollY > 50)
 
@@ -77,7 +89,7 @@ export const Navbar = () => {
     window.addEventListener('scroll', handleScroll)
     handleScroll() // Sync on mount without waiting for a scroll event
     return () => window.removeEventListener('scroll', handleScroll)
-  }, [])
+  }, [isHomePage, pathname])
 
   return (
     <nav className={`fixed w-full z-50 border-b border-orange-950/40 transition-all duration-300 ${scrolled
