@@ -61,9 +61,12 @@ export const Navbar = () => {
         current = 'contact'
       }
 
-      // Snap back to "home" when near the very top of the page
+      // Snap back to "home" when near the very top of the page and clear URL hash
       if (window.scrollY < 100) {
         current = 'home'
+        if (window.location.hash) {
+          window.history.replaceState(null, '', window.location.pathname + window.location.search)
+        }
       }
 
       if (current) {
@@ -84,7 +87,7 @@ export const Navbar = () => {
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="relative flex h-[5.5rem] items-center">
           {/* Logo */}
-          <Link href="/" className="flex items-center group transition-all duration-200 group-hover:scale-105">
+          <Link href="/" className="flex items-center group transition-all duration-300 hover:-translate-y-1 hover:scale-105">
             <img
               src="/saturn-logo.png"
               alt="Saturn Textiles Limited — Research and Development Department"
@@ -93,28 +96,31 @@ export const Navbar = () => {
           </Link>
 
           {/* Desktop Navigation */}
-          <div className="hidden md:flex items-center space-x-1 absolute left-1/2 -translate-x-1/2">
-            {NAV_LINKS.map((link) => (
-              <Link
-                key={link.label}
-                href={link.href}
-                className={`px-4 py-2 text-base font-semibold tracking-wide rounded-lg transition-all duration-300 ${activeSection === link.sectionId
-                  ? 'bg-orange-500 text-white shadow-lg shadow-orange-500/20'
-                  : 'text-slate-200 hover:text-orange-400 hover:bg-orange-500/10'
-                  }`}
-              >
-                {link.label}
-              </Link>
-            ))}
+          <div className="hidden md:flex items-center space-x-2 absolute left-1/2 -translate-x-1/2">
+            {NAV_LINKS.map((link) => {
+              const isActive = activeSection === link.sectionId
+              return (
+                <Link
+                  key={link.label}
+                  href={link.href}
+                  className={`px-4 py-2 text-sm font-bold tracking-wider rounded-xl transition-all duration-300 transform hover:-translate-y-1 hover:scale-105 active:scale-95 ${isActive
+                    ? 'bg-orange-500 text-white shadow-lg shadow-orange-500/40 -translate-y-1 scale-105'
+                    : 'text-slate-200 hover:text-orange-400 hover:bg-orange-500/20 hover:shadow-md hover:shadow-orange-500/20'
+                    }`}
+                >
+                  {link.label}
+                </Link>
+              )
+            })}
           </div>
 
           {/* Right Section */}
           <div className="ml-auto flex items-center space-x-3">
             <Link
               href="/#contact"
-              className={`hidden rounded-xl border px-5 py-2.5 text-sm font-semibold transition lg:inline-flex ${activeSection === 'contact'
-                ? 'bg-orange-500 text-white border-orange-500 shadow-lg shadow-orange-500/20'
-                : 'border-orange-500 text-orange-300 hover:bg-orange-500 hover:text-white'
+              className={`hidden rounded-xl border px-5 py-2.5 text-sm font-bold tracking-wide transition-all duration-300 transform hover:-translate-y-1 hover:scale-105 active:scale-95 lg:inline-flex ${activeSection === 'contact'
+                ? 'bg-orange-500 text-white border-orange-500 shadow-lg shadow-orange-500/40 -translate-y-1 scale-105'
+                : 'border-orange-500/60 text-orange-400 hover:bg-orange-500/20 hover:text-orange-300 hover:border-orange-500/80 hover:shadow-md hover:shadow-orange-500/20'
                 }`}
             >
               Let's Connect

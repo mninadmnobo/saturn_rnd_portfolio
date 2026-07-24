@@ -19,6 +19,7 @@
  * @module app/page
  */
 import { Navbar } from '@/components/layout/Navbar'
+import { WelcomeBanner } from '@/components/ui/WelcomeBanner'
 import { Hero } from '@/components/sections/Hero'
 import { CapabilitiesSection } from '@/components/sections/CapabilitiesSection'
 import { AboutSection } from '@/components/sections/AboutSection'
@@ -34,6 +35,7 @@ export default function Home() {
       <Navbar />
       {/* pt-[5.5rem] offsets the fixed navbar height (5.5rem = 88px) */}
       <div className="pt-[5.5rem]">
+        <WelcomeBanner />
         <div id="home">
           <Hero />
           <CapabilitiesSection />

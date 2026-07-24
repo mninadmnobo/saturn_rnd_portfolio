@@ -57,7 +57,7 @@ export const Footer = () => {
                     title="+880 1039-444451"
                     className="hover:text-orange-400 transition-colors"
                   >
-                    +880 1039-444451
+                    +880 1939-444451
                   </a>
                 </div>
               </li>

@@ -23,7 +23,7 @@ import { Providers } from '@/components/providers/ThemeProvider'
 import './globals.css'
 
 export const metadata: Metadata = {
-  title: 'Saturn Textiles R&D - Advanced Textile Innovation',
+  title: 'Saturn Textiles R&D',
   description: 'Pioneering research and development in advanced textile technologies. Discover our innovations in sustainable materials, smart textiles, and high-performance fabrics.',
   keywords: ['textiles', 'R&D', 'innovation', 'materials', 'research', 'sustainable'],
   openGraph: {
@@ -32,8 +32,8 @@ export const metadata: Metadata = {
     type: 'website',
   },
   icons: {
-    icon: '/saturn-logo.png',
-    apple: '/saturn-logo.png',
+    icon: '/saturn-icon.png',
+    apple: '/saturn-icon.png',
   },
 }
 
@@ -49,8 +49,8 @@ export default function RootLayout({
   children: React.ReactNode
 }>) {
   return (
-    <html lang="en" className="dark">
-      <body className="antialiased">
+    <html lang="en" className="dark scroll-smooth" data-scroll-behavior="smooth">
+      <body className="antialiased bg-[#020914] text-[#e8edf2]">
         {/* Ambient background — fixed, behind all content, pointer-events disabled */}
         <div className="fixed inset-0 -z-50 pointer-events-none">
           {/* Subtle grid overlay */}

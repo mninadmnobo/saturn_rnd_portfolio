@@ -94,7 +94,7 @@ export function LeaderDetails({ member, isFeatured, onClose }: LeaderDetailsProp
               <h3 className="text-xl sm:text-2xl md:text-3xl font-extrabold text-slate-900 dark:text-white tracking-tight leading-tight">
                 {member.name}
               </h3>
-              <p className="text-sm sm:text-base font-semibold text-orange-500 dark:text-orange-400 mt-0.5">
+              <p className="text-sm sm:text-base font-semibold text-blue-500 dark:text-blue-400 mt-0.5">
                 {member.title}
               </p>
             </div>

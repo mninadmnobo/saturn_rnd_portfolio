@@ -29,22 +29,12 @@ import { LeaderDetails } from '@/components/ui/LeaderDetails'
 import { fadeInUpVariants, staggerContainer, defaultViewport } from '@/lib/animations'
 import type { TeamMember } from '@/lib/data/leaders'
 
-/** Minimal LinkedIn SVG — avoids pulling in a full icon library. */
-const LinkedinIcon = ({ className }: { className?: string }) => (
-  <svg
-    xmlns="http://www.w3.org/2000/svg"
-    viewBox="0 0 24 24"
-    fill="none"
-    stroke="currentColor"
-    strokeWidth="2"
-    strokeLinecap="round"
-    strokeLinejoin="round"
-    className={className}
-    aria-hidden="true"
-  >
-    <path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6z" />
-    <rect x="2" y="9" width="4" height="12" />
-    <circle cx="4" cy="4" r="2" />
+/** High-contrast official LinkedIn SVG logo badge */
+const LinkedinIcon = ({ className = 'w-5 h-5' }: { className?: string }) => (
+  <svg className={className} viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+    <rect width="24" height="24" rx="5" fill="#0A66C2"/>
+    <path d="M19 19H15.8202V13.8407C15.8202 12.5199 15.3408 11.6163 14.1565 11.6163C13.2505 11.6163 12.716 12.2217 12.4795 12.808C12.3929 13.0182 12.3708 13.3108 12.3708 13.6046V19H9.18972C9.18972 19 9.2323 10.3709 9.18972 9.46736H12.3708V10.8202C12.7937 10.1659 13.5517 9.2323 15.2492 9.2323C17.3392 9.2323 18.9189 10.5975 18.9189 13.5414V19H19Z" fill="white"/>
+    <path d="M5.53906 8.01633C6.65089 8.01633 7.34509 7.28308 7.32454 6.36875C7.30399 5.43317 6.65089 4.7207 5.56116 4.7207C4.47143 4.7207 3.75488 5.43317 3.75488 6.36875C3.75488 7.28308 4.45088 8.01633 5.53906 8.01633ZM3.94824 19H7.12933V9.46736H3.94824V19Z" fill="white"/>
   </svg>
 )
 
@@ -104,8 +94,6 @@ export function LeadersSection() {
           {members.map((member, idx) => {
             const isFeatured = idx === 0
             const accent = isFeatured ? 'border-orange-500' : 'border-blue-500'
-            const accentText = isFeatured ? 'text-orange-500' : 'text-blue-500'
-            const accentBar = isFeatured ? 'bg-orange-500' : 'bg-blue-500'
 
             return (
               <motion.div
@@ -115,7 +103,7 @@ export function LeadersSection() {
               >
                 {/* Avatar */}
                 <div className="flex justify-center mb-6">
-                  <div className={`w-40 h-40 rounded-full p-1 border-2 ${accent} bg-white dark:bg-[#0a1526]`}>
+                  <div className="w-40 h-40 rounded-full p-1 border-2 border-orange-500 shadow-[0_0_15px_rgba(249,115,22,0.25)] bg-white dark:bg-[#0a1526]">
                     {member.image ? (
                       <img
                         src={member.image}
@@ -136,11 +124,11 @@ export function LeadersSection() {
                     <h3 className="text-2xl font-bold text-slate-900 dark:text-white mb-2 min-h-[4rem] flex items-center justify-center leading-tight">
                       {member.name}
                     </h3>
-                    <p className={`text-sm font-semibold ${accentText}`}>{member.title}</p>
+                    <p className="text-sm font-semibold text-blue-500 dark:text-blue-400">{member.title}</p>
                   </div>
 
                   <div className="mt-auto">
-                    <div className={`w-8 h-[2px] mx-auto mt-5 mb-8 rounded-full ${accentBar}`} />
+                    <div className="w-8 h-[2px] mx-auto mt-5 mb-8 rounded-full bg-blue-500" />
                     <button
                       onClick={() => setSelectedMember(member)}
                       className="group inline-flex items-center gap-2 px-5 py-2.5 rounded-full border border-transparent hover:border-orange-500/80 bg-transparent hover:bg-orange-500 text-orange-500 hover:text-white text-xs font-bold uppercase tracking-wider transition-all duration-300 hover:shadow-lg hover:shadow-orange-500/40 hover:scale-105 active:scale-95 mb-2 cursor-pointer"
@@ -157,13 +145,11 @@ export function LeadersSection() {
                       href={member.social?.linkedin || '#'}
                       target="_blank"
                       rel="noopener noreferrer"
-                      className="flex items-center gap-2 text-sm font-medium text-slate-600 dark:text-slate-300 hover:text-slate-900 dark:hover:text-white transition-colors group"
+                      className="inline-flex items-center gap-2.5 px-5 py-2 rounded-full border border-transparent bg-transparent text-slate-300 dark:text-slate-200 hover:bg-[#0a66c2] hover:text-white hover:border-[#0a66c2] hover-blue-blink transition-all duration-300 hover:shadow-lg hover:shadow-blue-500/40 hover:scale-105 active:scale-95 group cursor-pointer"
                       aria-label={`${member.name} LinkedIn`}
                     >
-                      <div className="p-1.5 rounded-md bg-orange-500/10 text-orange-500 group-hover:bg-orange-500/20 transition-colors">
-                        <LinkedinIcon className="w-4 h-4" />
-                      </div>
-                      LinkedIn
+                      <LinkedinIcon className="w-5 h-5 shrink-0 group-hover:scale-110 transition-transform" />
+                      <span className="text-sm font-semibold tracking-wide">LinkedIn</span>
                     </Link>
                   </div>
                 </div>

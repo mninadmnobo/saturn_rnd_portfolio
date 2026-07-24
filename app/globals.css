@@ -29,31 +29,31 @@
 
 @theme inline {
   /* Color utilities */
-  --color-background:         var(--background);
-  --color-foreground:         var(--foreground);
-  --color-card:               var(--card);
-  --color-card-foreground:    var(--card-foreground);
-  --color-primary:            var(--primary);
+  --color-background: var(--background);
+  --color-foreground: var(--foreground);
+  --color-card: var(--card);
+  --color-card-foreground: var(--card-foreground);
+  --color-primary: var(--primary);
   --color-primary-foreground: var(--primary-foreground);
-  --color-secondary:          var(--secondary);
+  --color-secondary: var(--secondary);
   --color-secondary-foreground: var(--secondary-foreground);
-  --color-muted:              var(--muted);
-  --color-muted-foreground:   var(--muted-foreground);
-  --color-accent:             var(--accent);
-  --color-accent-foreground:  var(--accent-foreground);
-  --color-destructive:        var(--destructive);
-  --color-border:             var(--border);
-  --color-input:              var(--input);
-  --color-ring:               var(--ring);
+  --color-muted: var(--muted);
+  --color-muted-foreground: var(--muted-foreground);
+  --color-accent: var(--accent);
+  --color-accent-foreground: var(--accent-foreground);
+  --color-destructive: var(--destructive);
+  --color-border: var(--border);
+  --color-input: var(--input);
+  --color-ring: var(--ring);
   /* chart-3 = green (badge success), chart-4 = amber (badge warning) */
-  --color-chart-3:            var(--chart-3);
-  --color-chart-4:            var(--chart-4);
+  --color-chart-3: var(--chart-3);
+  --color-chart-4: var(--chart-4);
 
   /* Border-radius scale */
-  --radius-sm:  calc(var(--radius) * 0.6);
-  --radius-md:  calc(var(--radius) * 0.8);
-  --radius-lg:  var(--radius);
-  --radius-xl:  calc(var(--radius) * 1.4);
+  --radius-sm: calc(var(--radius) * 0.6);
+  --radius-md: calc(var(--radius) * 0.8);
+  --radius-lg: var(--radius);
+  --radius-xl: calc(var(--radius) * 1.4);
   --radius-2xl: calc(var(--radius) * 1.8);
   --radius-3xl: calc(var(--radius) * 2.2);
   --radius-4xl: calc(var(--radius) * 2.6);
@@ -66,25 +66,27 @@
    ─────────────────────────────────────────────────────────────────────────── */
 :root {
   color-scheme: light;
-  --background:         #ffffff;
-  --foreground:         #0b1f3a;
-  --card:               #f8fafc;
-  --card-foreground:    #0b1f3a;
-  --primary:            #0b1f3a;
+  --background: #ffffff;
+  --foreground: #0b1f3a;
+  --card: #f8fafc;
+  --card-foreground: #0b1f3a;
+  --primary: #0b1f3a;
   --primary-foreground: #ffffff;
-  --secondary:          #2563eb;
+  --secondary: #2563eb;
   --secondary-foreground: #ffffff;
-  --muted:              #e2e8f0;
-  --muted-foreground:   #64748b;
-  --accent:             #2563eb;
-  --accent-foreground:  #ffffff;
-  --destructive:        #dc2626;
-  --border:             #e2e8f0;
-  --input:              #f1f5f9;
-  --ring:               #2563eb;
-  --chart-3:            #10b981;   /* badge success (green)  */
-  --chart-4:            #f59e0b;   /* badge warning (amber)  */
-  --radius:             0.625rem;
+  --muted: #e2e8f0;
+  --muted-foreground: #64748b;
+  --accent: #2563eb;
+  --accent-foreground: #ffffff;
+  --destructive: #dc2626;
+  --border: #e2e8f0;
+  --input: #f1f5f9;
+  --ring: #2563eb;
+  --chart-3: #10b981;
+  /* badge success (green)  */
+  --chart-4: #f59e0b;
+  /* badge warning (amber)  */
+  --radius: 0.625rem;
 }
 
 /* ── Dark theme tokens (ACTIVE) ─────────────────────────────────────────────
@@ -92,31 +94,34 @@
    ─────────────────────────────────────────────────────────────────────────── */
 .dark {
   color-scheme: dark;
-  --background:         #020914;
-  --foreground:         #e8edf2;
-  --card:               #2a3038;
-  --card-foreground:    #e8edf2;
-  --primary:            #edf1f5;
+  --background: #020914;
+  --foreground: #e8edf2;
+  --card: #2a3038;
+  --card-foreground: #e8edf2;
+  --primary: #edf1f5;
   --primary-foreground: #20252b;
-  --secondary:          #2563eb;
+  --secondary: #2563eb;
   --secondary-foreground: #ffffff;
-  --muted:              #3a424c;
-  --muted-foreground:   #cbd5e1;
-  --accent:             #60a5fa;
-  --accent-foreground:  #20252b;
-  --destructive:        #f87171;
-  --border:             #334155;
-  --input:              #1e3a5f;
-  --ring:               #60a5fa;
-  --chart-3:            #10b981;   /* badge success (green)  */
-  --chart-4:            #fbbf24;   /* badge warning (amber)  */
-  --radius:             0.625rem;
+  --muted: #3a424c;
+  --muted-foreground: #cbd5e1;
+  --accent: #60a5fa;
+  --accent-foreground: #20252b;
+  --destructive: #f87171;
+  --border: #334155;
+  --input: #1e3a5f;
+  --ring: #60a5fa;
+  --chart-3: #10b981;
+  /* badge success (green)  */
+  --chart-4: #fbbf24;
+  /* badge warning (amber)  */
+  --radius: 0.625rem;
 }
 
 @layer base {
   * {
     @apply border-border outline-ring/50;
   }
+
   body {
     @apply bg-background text-foreground;
   }
@@ -124,10 +129,13 @@
 
 /* Pulsing border animation on hover */
 @keyframes borderPulse {
-  0%, 100% {
+
+  0%,
+  100% {
     border-color: rgba(249, 115, 22, 1);
     box-shadow: 0 0 30px rgba(249, 115, 22, 0.45), 0 0 60px rgba(249, 115, 22, 0.2);
   }
+
   50% {
     border-color: rgba(249, 115, 22, 0.25);
     box-shadow: 0 0 8px rgba(249, 115, 22, 0.1);
